@@ -4,7 +4,8 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\JobsTest;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Jobs;
 
 class JobLstTest extends TestCase
 {
@@ -19,13 +20,9 @@ class JobLstTest extends TestCase
     public function test_input_testDB()
     {   
 
-        $dummy_db = [
-            'job_name' => 'Dummy Text',
-            'job_description' => 'Dummy Text'
-        ];
+        factory(Jobs::class,10)->create();
 
-        $job = JobsTest::create($dummy_db);
-
+        $job = Jobs::first();
         
         $this->assertTrue($job != null);
     }
